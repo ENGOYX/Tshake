@@ -4,7 +4,7 @@ http = require("socket.http")
 JSON = dofile("./File_Libs/JSON.lua")
 local database = dofile("./File_Libs/redis.lua").connect("127.0.0.1", 6379)
 Server_Tshake = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
-local AutoFiles_Tshake = function() 
+local AutoFiles_Tshake = function()
 local Create_Info = function(Token,Sudo,UserName)  
 local Tshake_Info_Sudo = io.open("sudo.lua", 'w')
 Tshake_Info_Sudo:write([[
@@ -49,6 +49,7 @@ io.write('\n\27[1;31m»» The ID Is Saved\n\27[0;39;49m')
 database:set(Server_Tshake.."Id_Tshake",UserName)
 end
 os.execute('lua start.lua')
+end
 end
 local function Files_Tshake_Info()
 Create_Info(database:get(Server_Tshake.."Token_Tshake"),database:get(Server_Tshake.."Id_Tshake"),database:get(Server_Tshake.."UserName_Tshake"))   
